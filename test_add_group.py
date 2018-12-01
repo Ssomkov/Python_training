@@ -18,9 +18,7 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("user").send_keys("admin")
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_name("user").click()
-        # ERROR: Caught exception [ERROR: Unsupported command [doubleClick | name=user | ]]
-        wd.find_element_by_xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]").click()
+        wd.find_element_by_xpath("//input[@value='Login']").click()
         wd.find_element_by_name("new").click()
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
