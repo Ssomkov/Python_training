@@ -15,7 +15,6 @@ class AddContact(unittest.TestCase):
         self.wd.implicitly_wait(30)
 
     def test_add_contact(self):
-        self.open_home_page()
         self.login()
         self.add_contact(Contact(first_name="Chuvak", middle_name="Chuvakovich", last_name="Lebovsky",
                                      nick_name="Lebovsky", title="Contact title", company="Google inc.",
@@ -35,6 +34,7 @@ class AddContact(unittest.TestCase):
         wd.get("http://localhost/addressbook/")
 
     def login(self):
+        self.open_home_page()
         wd = self.wd
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")

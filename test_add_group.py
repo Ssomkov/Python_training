@@ -14,10 +14,8 @@ class TestAddGroup(unittest.TestCase):
         self.wd.implicitly_wait(30)
 
     def test_add_group(self):
-        self.open_home_page()
         self.login(user_name="admin", user_password="secret")
         self.create_group(Group(name="test group", footer="logo of group", header="comment for group"))
-        self.open_groups_page()
         self.logout()
 
     def logout(self):
@@ -42,8 +40,10 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("group_footer").clear()
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         wd.find_element_by_name("submit").click()
+        self.open_groups_page()
 
     def login(self, user_name, user_password):
+        self.open_home_page()
         wd = self.wd
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(user_name)
