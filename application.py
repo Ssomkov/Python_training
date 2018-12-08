@@ -8,9 +8,25 @@ class Application:
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
+    def destroy(self):
+        self.wd.quit()
+
+    def login(self, user_name, user_password):
+        self.open_home_page()
+        wd = self.wd
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys(user_name)
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys(user_password)
+        wd.find_element_by_xpath("//input[@value='Login']").click()
+
     def logout(self):
         wd = self.wd
         wd.find_element_by_link_text("Logout").click()
+
+    def open_home_page(self):
+        wd = self.wd
+        wd.get("http://localhost/addressbook/")
 
     def open_groups_page(self):
         wd = self.wd
@@ -81,19 +97,3 @@ class Application:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
         wd.find_element_by_xpath("//input[@value='Enter'][2]").click()
-
-    def login(self, user_name, user_password):
-        self.open_home_page()
-        wd = self.wd
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(user_name)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(user_password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-
-    def open_home_page(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/")
-
-    def destroy(self):
-        self.wd.quit()
