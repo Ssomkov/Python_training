@@ -5,7 +5,7 @@ class GroupHelper:
 
     def open_groups_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("group page").click()
+        wd.find_element_by_xpath("//li/a[text()='groups']").click()
 
     def create(self, group):
         wd = self.app.wd
@@ -22,3 +22,9 @@ class GroupHelper:
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
+
+    def delete_group(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        wd.find_element_by_xpath("//input[@name='delete'][1]").click()
