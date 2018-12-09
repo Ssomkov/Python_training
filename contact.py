@@ -1,4 +1,5 @@
 class Contact:
+
     def __init__(self, first_name, middle_name, last_name, nick_name, title, company, first_address, home_phone,
                  mobile_phone, work_phone, fax, email, email2, email3, homepage, birthday_day, birthday_month,
                  birthday_year, anniversary_day, anniversary_month, anniversary_year, group, secondary_address,
