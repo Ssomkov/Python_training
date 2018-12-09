@@ -23,13 +23,13 @@ class GroupHelper:
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
 
-    def delete_group(self):
+    def delete(self):
         wd = self.app.wd
         self.open_groups_page()
         wd.find_element_by_xpath("//input[@name='selected[]']").click()
         wd.find_element_by_xpath("//input[@name='delete'][1]").click()
 
-    def edit_group(self, group):
+    def edit(self, group):
         wd = self.app.wd
         self.open_groups_page()
         wd.find_element_by_xpath("//input[@name='selected[]']").click()

@@ -6,7 +6,7 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def add_contact(self, contact):
+    def create(self, contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").clear()
@@ -56,13 +56,13 @@ class ContactHelper:
         wd.find_element_by_name("notes").send_keys(contact.notes)
         wd.find_element_by_xpath("//input[@value='Enter'][2]").click()
 
-    def delete_contact(self):
+    def delete(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@name='selected[]']").click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
 
-    def edit_contact(self, contact):
+    def edit(self, contact):
         wd = self.app.wd
         wd.find_element_by_xpath("//a[contains(@href,'edit.php?id')]").click()
         wd.find_element_by_name("firstname").clear()
