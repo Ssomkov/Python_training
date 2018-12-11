@@ -9,17 +9,9 @@ class GroupHelper:
 
     def create(self, group):
         wd = self.app.wd
-        wd.find_element_by_xpath("//li/a[text()='groups']").click()
-        wd.find_element_by_name("new").click()
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(group.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(group.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(group.footer)
+        self.open_groups_page()
+        wd.find_element_by_xpath("//input[@name='new'][1]").click()
+        self.set_fields(group)
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
 
@@ -34,6 +26,12 @@ class GroupHelper:
         self.open_groups_page()
         wd.find_element_by_xpath("//input[@name='selected[]']").click()
         wd.find_element_by_xpath("//input[@name='edit'][1]").click()
+        self.set_fields(group)
+        wd.find_element_by_xpath("//input[@name='update']").click()
+        self.open_groups_page()
+
+    def set_fields(self, group):
+        wd = self.app.wd
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
         wd.find_element_by_name("group_name").send_keys(group.name)
@@ -43,5 +41,3 @@ class GroupHelper:
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
         wd.find_element_by_name("group_footer").send_keys(group.footer)
-        wd.find_element_by_xpath("//input[@name='update']").click()
-        self.open_groups_page()
