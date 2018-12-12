@@ -6,6 +6,10 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    def open_contacts_page(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//div[@id='nav']//a[text()='home']").click()
+
     def create(self, contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
@@ -17,6 +21,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@name='selected[]']").click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
+        self.open_contacts_page()
 
     def edit(self, contact):
         wd = self.app.wd
