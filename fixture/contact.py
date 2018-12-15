@@ -18,6 +18,7 @@ class ContactHelper:
 
     def delete(self):
         wd = self.app.wd
+        self.open_contacts_page()
         self.select_first_contact()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
@@ -29,6 +30,7 @@ class ContactHelper:
 
     def edit(self, contact):
         wd = self.app.wd
+        self.open_contacts_page()
         wd.find_element_by_xpath("//a[contains(@href,'edit.php?id')]").click()
         self.set_fields(contact)
 

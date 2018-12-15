@@ -2,7 +2,6 @@ from model.contact import Contact
 
 
 def test_edit_contact(app):
-    app.session.login(user_name="admin", user_password="secret")
     app.contact.edit(Contact(first_name="edited_first_name", middle_name="edited_middle_name",
                              last_name="edited_last_name", nick_name="edited_nick_name", title="edited_title",
                              company="Google inc.", first_address="USA", home_phone="+17637653812",
@@ -14,4 +13,3 @@ def test_edit_contact(app):
                              secondary_home="New York", notes="edited_Comments"
                              )
                      )
-    app.session.logout()
