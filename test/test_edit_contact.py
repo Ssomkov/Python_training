@@ -10,7 +10,7 @@ def test_edit_contact(app):
                              email="edited1@gmail.com", email2="edited2@inbox.ru", email3="edited3@yahoo.com",
                              homepage="edited_homepage.com", birthday_day="12", birthday_month="July",
                              birthday_year="1975", anniversary_day="4", anniversary_month="March",
-                             anniversary_year="2015", group="[none]", secondary_address="edited_USA, Boston",
+                             anniversary_year="2015", secondary_address="edited_USA, Boston",
                              secondary_home="New York", notes="edited_Comments"
                              )
                      )
