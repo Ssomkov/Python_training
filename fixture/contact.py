@@ -18,10 +18,14 @@ class ContactHelper:
 
     def delete(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        self.select_first_contact()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
         self.open_contacts_page()
+
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//input[@name='selected[]']").click()
 
     def edit(self, contact):
         wd = self.app.wd

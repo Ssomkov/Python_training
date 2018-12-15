@@ -18,13 +18,17 @@ class GroupHelper:
     def delete(self):
         wd = self.app.wd
         self.open_groups_page()
-        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        self.select_first_group()
         wd.find_element_by_xpath("//input[@name='delete'][1]").click()
+
+    def select_first_group(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//input[@name='selected[]']").click()
 
     def edit(self, group):
         wd = self.app.wd
         self.open_groups_page()
-        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        self.select_first_group()
         wd.find_element_by_xpath("//input[@name='edit'][1]").click()
         self.set_fields(group)
         wd.find_element_by_xpath("//input[@name='update']").click()
