@@ -8,7 +8,8 @@ class ContactHelper:
 
     def open_contacts_page(self):
         wd = self.app.wd
-        if not wd.current_url.endswith("/addressbook/"):
+        if not (wd.current_url.endswith("/addressbook/") and wd.find_element_by_xpath(
+                "//input[@name='searchstring']").is_displayed()):
             wd.find_element_by_xpath("//div[@id='nav']//a[text()='home']").click()
 
     def create(self, contact):
