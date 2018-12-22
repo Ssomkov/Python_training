@@ -30,7 +30,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@name='selected[]']").click()
 
-    def edit(self, contact):
+    def edit_first_contact(self, contact):
         wd = self.app.wd
         self.open_contacts_page()
         wd.find_element_by_xpath("//a[contains(@href,'edit.php?id')]").click()
