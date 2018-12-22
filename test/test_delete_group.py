@@ -1,7 +1,7 @@
 from model.group import Group
 
 
-def test_delete_contact(app):
+def test_delete_group(app):
     if app.group.count() == 0:
         app.group.create(
             Group(name="created group", footer="created logo of group", header="created comment for group"))
@@ -9,3 +9,5 @@ def test_delete_contact(app):
     app.group.delete()
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups) + 1
+    old_groups[0:1] = []
+    assert old_groups == new_groups
