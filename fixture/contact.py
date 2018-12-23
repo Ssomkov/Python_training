@@ -38,6 +38,7 @@ class ContactHelper:
         self.open_contacts_page()
         wd.find_element_by_xpath("//a[contains(@href,'edit.php?id')]").click()
         self.set_fields(contact)
+        wd.find_element_by_xpath("//input[@value='Update'][2]").click()
 
     def set_fields(self, contact):
         wd = self.app.wd
