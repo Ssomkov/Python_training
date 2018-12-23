@@ -22,23 +22,31 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Enter'][2]").click()
         self.contact_cache = None
 
-    def delete(self):
+    def delete_by_index(self, index):
         wd = self.app.wd
         self.open_contacts_page()
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
         self.open_contacts_page()
         self.contact_cache = None
 
-    def select_first_contact(self):
+    def delete_first_contact(self):
+        self.delete_by_index(0)
+        self.contact_cache = None
+
+    def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        wd.find_elements_by_xpath("//input[@name='selected[]']")[index].click()
 
     def edit_first_contact(self, contact):
+        self.edit_by_index(0, contact)
+        self.contact_cache = None
+
+    def edit_by_index(self, index, contact):
         wd = self.app.wd
         self.open_contacts_page()
-        wd.find_element_by_xpath("//a[contains(@href,'edit.php?id')]").click()
+        wd.find_elements_by_xpath("//a[contains(@href,'edit.php?id')]")[index].click()
         self.set_fields(contact)
         wd.find_element_by_xpath("//input[@value='Update'][2]").click()
         self.contact_cache = None
