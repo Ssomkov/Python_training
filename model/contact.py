@@ -1,10 +1,13 @@
+from sys import maxsize
+
+
 class Contact:
 
-    def __init__(self, first_name=None, middle_name=None, last_name=None, nick_name=None, title=None, company=None,
-                 first_address=None, home_phone=None, mobile_phone=None, work_phone=None, fax=None, email=None,
-                 email2=None, email3=None, homepage=None, birthday_day=None, birthday_month=None, birthday_year=None,
-                 anniversary_day=None, anniversary_month=None, anniversary_year=None, group=None,
-                 secondary_address=None, secondary_home=None, notes=None):
+    def __init__(self, first_name=None, middle_name=None, last_name=None, nick_name=None, title=None,
+                 company=None, first_address=None, home_phone=None, mobile_phone=None, work_phone=None, fax=None,
+                 email=None, email2=None, email3=None, homepage=None, birthday_day=None, birthday_month=None,
+                 birthday_year=None, anniversary_day=None, anniversary_month=None, anniversary_year=None, group=None,
+                 secondary_address=None, secondary_home=None, notes=None, id=None):
         self.first_name = first_name
         self.middle_name = middle_name
         self.last_name = last_name
@@ -30,3 +33,17 @@ class Contact:
         self.secondary_address = secondary_address
         self.secondary_home = secondary_home
         self.notes = notes
+        self.id = id
+
+    def __repr__(self):
+        return "%s %s %s" % (self.id, self.first_name, self.last_name)
+
+    def __eq__(self, other):
+        return (
+                           self.id is None or other.id is None or self.id == other.id) and self.first_name == other.first_name and self.last_name == other.last_name
+
+    def id_or_max(self):
+        if self.id:
+            return int(self.id)
+        else:
+            return maxsize

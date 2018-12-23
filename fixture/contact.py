@@ -1,4 +1,7 @@
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
+
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -80,3 +83,16 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contacts_page()
         return len(wd.find_elements_by_xpath("//input[@name='selected[]']"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        contacts = []
+        element: WebElement
+        for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
+            elements = element.find_elements_by_tag_name("td")
+            first_name = elements[2].text
+            last_name = elements[1].text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact(id=id, first_name=first_name, last_name=last_name))
+        return contacts
