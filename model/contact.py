@@ -4,7 +4,8 @@ from sys import maxsize
 class Contact:
 
     def __init__(self, first_name=None, middle_name=None, last_name=None, nick_name=None, title=None,
-                 company=None, first_address=None, home_phone=None, mobile_phone=None, work_phone=None, fax=None,
+                 company=None, first_address=None, home_phone=None, mobile_phone=None, work_phone=None,
+                 secondary_phone=None, fax=None,
                  email=None, email2=None, email3=None, homepage=None, birthday_day=None, birthday_month=None,
                  birthday_year=None, anniversary_day=None, anniversary_month=None, anniversary_year=None, group=None,
                  secondary_address=None, secondary_home=None, notes=None, id=None):
@@ -18,6 +19,7 @@ class Contact:
         self.home_phone = home_phone
         self.mobile_phone = mobile_phone
         self.work_phone = work_phone
+        self.secondary_phone = secondary_phone
         self.fax = fax
         self.email = email
         self.email2 = email2
@@ -40,7 +42,7 @@ class Contact:
 
     def __eq__(self, other):
         return (
-                           self.id is None or other.id is None or self.id == other.id) and self.first_name == other.first_name and self.last_name == other.last_name
+                       self.id is None or other.id is None or self.id == other.id) and self.first_name == other.first_name and self.last_name == other.last_name
 
     def id_or_max(self):
         if self.id:

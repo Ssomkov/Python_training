@@ -11,7 +11,7 @@ def test_add_contact(app):
                       email2="lebovsky@inbox.ru", email3="lebovsky@yahoo.com", homepage="google.com",
                       birthday_day="12", birthday_month="July", birthday_year="1975",
                       anniversary_day="4", anniversary_month="March", anniversary_year="2015",
-                      group="[none]", secondary_address="USA, Boston", secondary_home="New York",
+                      group="[none]", secondary_address="USA, Boston", secondary_home="123123213",
                       notes="Comments"
                       )
     app.contact.create(contact)
