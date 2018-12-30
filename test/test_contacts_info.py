@@ -11,8 +11,6 @@ def test_contacts_info_on_home_page(app):
     assert contact_from_home_page.all_emails_from_home_page == merge_emails_like_on_home_page(contact_from_edit_page)
 
 
-
-
 def clear(s):
     return re.sub("[() -]", "", s)
 
