@@ -14,9 +14,8 @@ def get_random_string(prefix, max_length):
 
 
 test_data = [Group(name=get_random_string("group name", 10), footer=get_random_string("group footer", 10),
-                   header=get_random_string("group header", 10)),
-             Group(name=get_random_string("group name", 10), footer=get_random_string("group footer", 10),
-                   header=get_random_string("group header", 10))]
+                   header=get_random_string("group header", 10)) for i in range(3)
+             ]
 
 
 def get_ids():
