@@ -39,7 +39,7 @@ class Contact:
         self.all_emails_from_home_page = all_emails_from_home_page
 
     def __repr__(self):
-        return "%s %s %s" % (self.id, self.first_name, self.last_name)
+        return "Id: %s; First name: %s; Last name: %s" % (self.id, self.first_name, self.last_name)
 
     def __eq__(self, other):
         return (
