@@ -76,7 +76,7 @@ class ContactHelper:
         self.set_text_field("ayear", contact.anniversary_year)
         self.set_dropdown_field("new_group", contact.group)
         self.set_text_field("address2", contact.secondary_address)
-        self.set_text_field("phone2", contact.secondary_home)
+        self.set_text_field("phone2", contact.secondary_phone)
         self.set_text_field("notes", contact.notes)
 
     def set_text_field(self, field_name, value):

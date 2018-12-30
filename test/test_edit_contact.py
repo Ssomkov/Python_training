@@ -17,7 +17,7 @@ def test_edit_contact(app):
                       homepage="edited_homepage.com", birthday_day="12", birthday_month="July",
                       birthday_year="1975", anniversary_day="4", anniversary_month="March",
                       anniversary_year="2015", secondary_address="edited_USA, Boston",
-                      secondary_home="New York", notes="edited_Comments"
+                      secondary_phone="4234234234", notes="edited_Comments"
                       )
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
