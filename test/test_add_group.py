@@ -1,25 +1,8 @@
 # -*- coding: utf-8 -*-
-
-import random
-import string
-
 import pytest
 
+from data.add_group import test_data, get_ids
 from model.group import Group
-
-
-def get_random_string(prefix, max_length):
-    symbols = string.ascii_letters + string.digits + " "
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(max_length))])
-
-
-test_data = [Group(name=get_random_string("group name", 10), footer=get_random_string("group footer", 10),
-                   header=get_random_string("group header", 10)) for i in range(3)
-             ]
-
-
-def get_ids():
-    return [repr(x) for x in test_data]
 
 
 @pytest.mark.parametrize("group", test_data, ids=get_ids())
