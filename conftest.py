@@ -49,6 +49,7 @@ def pytest_generate_tests(metafunc):
             test_data = load_from_json(fixture[5:])
             metafunc.parametrize(fixture, test_data, ids=[str(x) for x in test_data])
 
+
 def load_from_module(module):
     return importlib.import_module("data.%s" % module).test_data
 
