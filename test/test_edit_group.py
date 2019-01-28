@@ -13,9 +13,9 @@ def test_edit_random_group(app, db, check_ui):
     app.group.edit_by_id(group_for_edit.id, group)
     new_groups = db.get_group_list()
     assert len(old_groups) == len(new_groups)
-    for item in old_groups:
-        if (item.id == group_for_edit.id):
-            item = group
+    for i in range(len(old_groups)):
+        if old_groups[i].id == group_for_edit.id:
+            old_groups[i] = group
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
     if check_ui:
         assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
