@@ -21,6 +21,8 @@ def test_edit_contact(app, db, check_ui):
                       )
     old_contacts = db.get_contact_list()
     contact_for_edit = random.choice(old_contacts)
+    id = contact_for_edit.id
+    contact.id = id
     app.contact.edit_by_id(contact_for_edit.id, contact)
     new_contacts = db.get_contact_list()
     assert len(old_contacts) == len(new_contacts)

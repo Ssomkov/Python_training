@@ -10,6 +10,8 @@ def test_edit_random_group(app, db, check_ui):
     group = Group(name="edited_test group", footer="edited_logo of group", header="edited_comment for group")
     old_groups = db.get_group_list()
     group_for_edit = random.choice(old_groups)
+    id = group_for_edit.id
+    group.id = id
     app.group.edit_by_id(group_for_edit.id, group)
     new_groups = db.get_group_list()
     assert len(old_groups) == len(new_groups)
