@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from pony.orm import *
 from pymysql.converters import decoders
 
@@ -22,7 +20,13 @@ class ORMFixture:
         id = PrimaryKey(int, column='id')
         firstname = Optional(str, column='firstname')
         lastname = Optional(str, column='lastname')
-        deprecated = Optional(datetime, column='deprecated')
+        home = Optional(str, column='home')
+        mobile = Optional(str, column='mobile')
+        work = Optional(str, column='work')
+        email = Optional(str, column='email')
+        email2 = Optional(str, column='email2')
+        email3 = Optional(str, column='email3')
+        deprecated = Optional(str, column='deprecated')
 
     def __init__(self, host, name, user, password):
         self.db.bind('mysql', host=host, database=name, user=user, password=password, conv=decoders)
@@ -41,7 +45,9 @@ class ORMFixture:
 
     def convert_contacts_to_model(self, contacts):
         def convert(contact):
-            return Contact(id=str(contact.id), first_name=contact.firstname, last_name=contact.lastname)
+            return Contact(id=str(contact.id), first_name=contact.firstname, last_name=contact.lastname,
+                           home_phone=contact.home, mobile_phone=contact.mobile, work_phone=contact.work,
+                           email=contact.email, email2=contact.email2, email3=contact.email3)
 
         return list(map(convert, contacts))
 

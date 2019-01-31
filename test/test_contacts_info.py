@@ -1,14 +1,20 @@
 import re
 
+from model.contact import Contact
 
-def test_contacts_info_on_home_page(app):
-    contact_from_home_page = app.contact.get_contact_list()[0]
-    contact_from_edit_page = app.contact.get_contact_info_from_edit_page(0)
-    assert contact_from_home_page.first_name == contact_from_edit_page.first_name
-    assert contact_from_home_page.last_name == contact_from_edit_page.last_name
-    assert contact_from_home_page.first_address == contact_from_edit_page.first_address
-    assert contact_from_home_page.all_phones_from_home_page == merge_phones_like_on_home_page(contact_from_edit_page)
-    assert contact_from_home_page.all_emails_from_home_page == merge_emails_like_on_home_page(contact_from_edit_page)
+
+def test_contacts_info_on_home_page(app, db):
+    contacts_from_bd = sorted(db.get_contact_list(), key=Contact.id_or_max)
+    contacts_from_page = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
+
+    for item in range(len(contacts_from_bd)):
+        assert contacts_from_bd[item].first_name == contacts_from_page[item].first_name
+        assert contacts_from_bd[item].last_name == contacts_from_page[item].last_name
+        assert contacts_from_bd[item].first_address == contacts_from_page[item].first_address
+        assert contacts_from_page[item].all_phones_from_home_page == merge_phones_like_on_home_page(
+            contacts_from_bd[item])
+        assert contacts_from_page[item].all_emails_from_home_page == merge_emails_like_on_home_page(
+            contacts_from_bd[item])
 
 
 def clear(s):
