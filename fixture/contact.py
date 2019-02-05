@@ -49,6 +49,11 @@ class ContactHelper:
         wd.find_element_by_xpath("//i/a").click()
         self.contact_cache = None
 
+    def remove_from_group_by_id(self, contact_id):
+        wd: WebElement = self.app.wd
+        self.mark_contact_by_id(contact_id)
+        wd.find_element_by_xpath("//input[@name='remove']").click()
+
     def delete_first_contact(self):
         self.delete_by_index(0)
         self.contact_cache = None
