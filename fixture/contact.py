@@ -40,6 +40,15 @@ class ContactHelper:
         self.open_contacts_page()
         self.contact_cache = None
 
+    def add_to_group_by_id(self, contact_id, group_id):
+        wd: WebElement = self.app.wd
+        self.open_contacts_page()
+        self.mark_contact_by_id(contact_id)
+        wd.find_element_by_xpath("//select[@name='to_group']/option[@value='%s']" % group_id).click()
+        wd.find_element_by_xpath("//input[@name='add']").click()
+        wd.find_element_by_xpath("//i/a").click()
+        self.contact_cache = None
+
     def delete_first_contact(self):
         self.delete_by_index(0)
         self.contact_cache = None
@@ -47,6 +56,10 @@ class ContactHelper:
     def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("//input[@name='selected[]']")[index].click()
+
+    def mark_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//input[@id='%s']" % id).click()
 
     def select_contact_by_id(self, id):
         wd = self.app.wd
