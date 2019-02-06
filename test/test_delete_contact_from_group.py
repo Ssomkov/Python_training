@@ -5,17 +5,19 @@ from model.group import Group
 
 
 def test_delete_contact_from_group(app, db, db_orm):
-    # создаем новый контакт
-    app.contact.create(
-        Contact(first_name="created_first_name", middle_name="created_middle_name", last_name="created_last_name"))
+    # создаем новый контакт если контактов нет
+    if app.contact.count() == 0:
+        app.contact.create(
+            Contact(first_name="created_first_name", middle_name="created_middle_name", last_name="created_last_name"))
     # список контактов из БД
     old_contacts = db.get_contact_list()
     # берем рандомный контакт
     contact = random.choice(old_contacts)
     contact_id = contact.id
     # создаем новую группу
-    app.group.create(
-        Group(name="created group", footer="created logo of group", header="created comment for group"))
+    if len(db.get_group_list()) == 0:
+        app.group.create(
+            Group(name="created group", footer="created logo of group", header="created comment for group"))
     # список групп из БД
     old_groups = db.get_group_list()
     # берем рандомную группу
