@@ -1,25 +1,25 @@
 import random
 
-import pytest
+import allure
 
 from model.group import Group
 
 
 def test_edit_random_group(app, db, check_ui):
-    with pytest.allure.step('Create group if not exists'):
+    with allure.step('Create group if not exists'):
         if app.group.count() == 0:
             app.group.create(
                 Group(name="created group", footer="created logo of group", header="created comment for group"))
         group = Group(name="edited_test group", footer="edited_logo of group", header="edited_comment for group")
-    with pytest.allure.step('Get group list from DB'):
+    with allure.step('Get group list from DB'):
         old_groups = db.get_group_list()
-    with pytest.allure.step('Get random group'):
+    with allure.step('Get random group'):
         group_for_edit = random.choice(old_groups)
         id = group_for_edit.id
         group.id = id
-    with pytest.allure.step('Edit group %s' % group_for_edit):
+    with allure.step('Edit group %s' % group_for_edit):
         app.group.edit_by_id(group_for_edit.id, group)
-    with pytest.allure.step('Verify group was edited'):
+    with allure.step('Verify group was edited'):
         new_groups = db.get_group_list()
         assert len(old_groups) == len(new_groups)
         for i in range(len(old_groups)):

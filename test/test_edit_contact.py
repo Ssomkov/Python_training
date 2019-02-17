@@ -1,12 +1,12 @@
 import random
 
-import pytest
+import allure
 
 from model.contact import Contact
 
 
 def test_edit_contact(app, db, check_ui):
-    with pytest.allure.step('Create contact if not exists'):
+    with allure.step('Create contact if not exists'):
         if app.contact.count() == 0:
             app.contact.create(
                 Contact(first_name="created_first_na", middle_name="created_middle_na", last_name="created_last_na"))
@@ -23,13 +23,13 @@ def test_edit_contact(app, db, check_ui):
                           secondary_phone="4234234234", notes="edited_Comments"
                           )
     old_contacts = db.get_contact_list()
-    with pytest.allure.step('Get random contact'):
+    with allure.step('Get random contact'):
         contact_for_edit = random.choice(old_contacts)
         id = contact_for_edit.id
         contact.id = id
-    with pytest.allure.step('Edit contact %s' % contact_for_edit):
+    with allure.step('Edit contact %s' % contact_for_edit):
         app.contact.edit_by_id(contact_for_edit.id, contact)
-    with pytest.allure.step('Verify contact was edited'):
+    with allure.step('Verify contact was edited'):
         new_contacts = db.get_contact_list()
         assert len(old_contacts) == len(new_contacts)
         for i in range(len(old_contacts)):

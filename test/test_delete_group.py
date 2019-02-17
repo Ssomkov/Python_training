@@ -1,21 +1,21 @@
 import random
 
-import pytest
+import allure
 
 from model.group import Group
 
 
 def test_delete_random_group(app, db, check_ui):
-    with pytest.allure.step('Create group if not exists'):
+    with allure.step('Create group if not exists'):
         if len(db.get_group_list()) == 0:
             app.group.create(
                 Group(name="created group", footer="created logo of group", header="created comment for group"))
     old_groups = app.group.get_group_list()
-    with pytest.allure.step('Get random group'):
+    with allure.step('Get random group'):
         group = random.choice(old_groups)
-    with pytest.allure.step('Delete group %s' % group):
+    with allure.step('Delete group %s' % group):
         app.group.delete_by_id(group.id)
-    with pytest.allure.step('Verify group was deleted'):
+    with allure.step('Verify group was deleted'):
         new_groups = app.group.get_group_list()
         assert len(old_groups) == len(new_groups) + 1
         old_groups.remove(group)
