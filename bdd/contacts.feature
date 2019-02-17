@@ -14,3 +14,17 @@ Given a non-empty contact list
 Given a random contact from list
 When I delete a contact from list
 Then the new contact list is equal to the old list without deleted contact
+
+
+Scenario Outline: Edit contact
+Given a non-empty contact list
+Given a random contact from list
+Given contact with <first_name>, <middle_name> and <last_name>
+When I edit a random contact from list
+Then the new contact list is equal to the old contact list with the edited contact
+
+
+Examples:
+| first_name | middle_name | last_name |
+| first | middle | last |
+| first1 | middle1 | last1|
